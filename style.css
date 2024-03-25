@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Scribble&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
+}
+
+body {
+  background: #191f3f;
+  scrollbar-width: thin;
+  font-family: "PT Sans", sans-serif;
+}
+
+.main__title {
+  font-family: "Rubik Scribble", system-ui;
+  color: white;
+  padding: 1rem;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.main__button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.main__button:hover {
+  cursor: pointer;
+  background-color: rgb(208, 207, 207);
+}
+
+.main__button:active {
+  transform: scale(0.9);
+}
+
+.main__characters {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.main__character {
+  background: #0b0e1f;
+  color: white;
+  padding: 1.2rem;
+  border-radius: 24px;
+  animation: aparecer 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.main__character__figure {
+  border-radius: 16px;
+}
+
+.main__character__img {
+  border-radius: inherit;
+  width: 100%;
+}
+
+.main__character__name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem 0;
+}
+
+.main__character__id {
+  color: gold;
+}
+
+.main__character__description {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.status {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: violet;
+  border-radius: 50%;
+  animation: status 1s ease infinite;
+}
+
+@keyframes status {
+  0% {
+    transform: scale(0);
+    opacity: 100;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    transform: rotate(180deg) scale(0);
+  }
+  to {
+    transform: rotate(0) scale(1);
+  }
+}
