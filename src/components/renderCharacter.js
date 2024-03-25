@@ -1,6 +1,10 @@
 import { createCharacterHTML } from "./createCharacterHTML";
-import { cargarStorage } from "./storage";
-import { guardarCharacter } from "./storage";
+import {
+  obtenerCharacters,
+  guardarCharacter,
+  eliminarCharacter,
+  cargarStorage,
+} from "./storage";
 
 /**
  * !funcion que hace una peticion al endpoint
@@ -21,7 +25,6 @@ const sendHTTP = async () => {
 };
 
 //le asigna el valor convertido de localStorage o un array vacío si no hay nada en local
-const characters = cargarStorage() || [];
 
 /**
  * !función que renderiza un personaje
@@ -33,25 +36,36 @@ export const renderCharacter = async (element) => {
 
   //!función que renderiza los personajes en el elemento div
   const renderizer = () => {
+    //limpia el contenedor de los personajes
     element.innerHTML = "";
-    characters.map((character) => {
+
+    //agrega los personajes al contenedor
+    obtenerCharacters().map((character) => {
       element.append(createCharacterHTML(character));
+    });
+
+    //referencia a los botones de eliminar
+    const butonsDelete = document.querySelectorAll(".main__character__delete");
+    //recorre los botones
+    butonsDelete.forEach((butonDelete) => {
+      //agrega un evento click
+      butonDelete.addEventListener("click", () => {
+        //llama la función eliminar y envía el id del boton
+        eliminarCharacter(butonDelete.getAttribute("data-id"));
+        renderizer();
+      });
     });
   };
 
-  //renderiza en un inicio los personajes
+  //renderizar desde un inicio los personajes
   renderizer();
-
-  console.log(characters);
 
   //evento de escucha al boton de nuevo personaje
   botonNuevo.addEventListener("click", async () => {
     //espera la respuesta de la promesa que trae un nuevo personaje
     //cuando se resuelve envía el personaje y lo envia junto con el array de
     //personajes a la funcion guardar que guarda en el localStorage y finalmente renderiza
-    await sendHTTP().then((personaje) =>
-      guardarCharacter(personaje, characters)
-    );
+    await sendHTTP().then(guardarCharacter);
     renderizer();
   });
 };

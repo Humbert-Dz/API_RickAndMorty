@@ -9,8 +9,11 @@
 
 body {
   background: #191f3f;
-  scrollbar-width: thin;
   font-family: "PT Sans", sans-serif;
+}
+
+html {
+  scrollbar-width: thin;
 }
 
 .main__title {
@@ -58,6 +61,7 @@ body {
   padding: 1.2rem;
   border-radius: 24px;
   animation: aparecer 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  position: relative;
 }
 
 .main__character__figure {
@@ -96,6 +100,29 @@ body {
   height: 15px;
   border-radius: 50%;
   animation: status 1s ease infinite;
+}
+
+.main__character__delete {
+  border: 0;
+  outline: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(232, 61, 61);
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: white;
+}
+
+.main__character__delete:hover {
+  background-color: rgb(249, 75, 75);
+  cursor: pointer;
+}
+.main__character__delete:active {
+  transform: scale(0.9);
 }
 
 @keyframes status {
