@@ -1,3 +1,4 @@
+import { renderCharacter } from "./src/components/renderCharacter";
 import "./style.css";
 
 document.querySelector("#app").innerHTML = `
@@ -7,3 +8,7 @@ document.querySelector("#app").innerHTML = `
   
 </div>
 `;
+
+const mainCharacters = document.querySelector("#main__characters");
+
+renderCharacter(mainCharacters);
